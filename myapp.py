@@ -79,7 +79,7 @@ if authentication_status:
         
 
         # config = pdfkit.configuration(wkhtmltopdf="C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe")
-        pdf=pdfkit.from_string(html, 'MyPDF.pdf', configuration=config,options=get_options())
+        pdf=pdfkit.from_string(html, 'MyPDF.pdf', options=get_options())
         # pdf = pdfkit.from_string(html, False)
         st.balloons()
 
