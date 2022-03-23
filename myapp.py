@@ -78,7 +78,7 @@ if authentication_status:
         st.write(html)
         
 
-        config = pdfkit.configuration(wkhtmltopdf="C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe")
+        # config = pdfkit.configuration(wkhtmltopdf="C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe")
         pdf=pdfkit.from_string(html, 'MyPDF.pdf', configuration=config,options=get_options())
         # pdf = pdfkit.from_string(html, False)
         st.balloons()
