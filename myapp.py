@@ -103,7 +103,7 @@ if authentication_status:
             pdf.add_page()
             pdf.set_font('Arial', 'B', 16)
             st.write(html)
-            pdf.cell(40, 10, html)
+            pdf.cell(40, 10, "Testtttttttt")
             
             html = create_download_link(pdf.output(dest="S").encode("latin-1"), "test")
 
