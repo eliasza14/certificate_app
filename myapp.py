@@ -6,7 +6,8 @@ from jinja2 import Environment, PackageLoader, select_autoescape, FileSystemLoad
 from datetime import date
 import streamlit as st
 from streamlit.components.v1 import iframe
-
+from fpdf import FPDF
+import base64
 
 
 def get_options():
@@ -78,10 +79,30 @@ if authentication_status:
         st.write(html)
         
 
+
         # config = pdfkit.configuration(wkhtmltopdf="C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe")
         # pdf=pdfkit.from_string(html,options=get_options())
         # pdf = pdfkit.from_string(html, False)
         st.balloons()
+
+        export_as_pdf = st.button("Export Report")
+
+        def create_download_link(val, filename):
+            b64 = base64.b64encode(val)  # val looks like b'...'
+            return f'<a href="data:application/octet-stream;base64,{b64.decode()}" download="{filename}.pdf">Download file</a>'
+
+        if export_as_pdf:
+            pdf = FPDF()
+            pdf.add_page()
+            pdf.set_font('Arial', 'B', 16)
+            pdf.cell(40, 10, "testy")
+            
+            html = create_download_link(pdf.output(dest="S").encode("latin-1"), "test")
+
+            st.markdown(html, unsafe_allow_html=True)
+
+
+
 
         # right.success("🎉 Your diploma was generated!")
         # # st.write(html, unsafe_allow_html=True)
