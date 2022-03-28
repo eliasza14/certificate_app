@@ -79,22 +79,22 @@ if authentication_status:
         
 
         # config = pdfkit.configuration(wkhtmltopdf="C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe")
-        pdf=pdfkit.from_string(html,options=get_options())
+        # pdf=pdfkit.from_string(html,options=get_options())
         # pdf = pdfkit.from_string(html, False)
         st.balloons()
 
-        right.success("🎉 Your diploma was generated!")
-        # st.write(html, unsafe_allow_html=True)
-        # st.write("")
-        with open("MyPDF.pdf", "rb") as pdf_file:
-            PDFbyte = pdf_file.read()
+        # right.success("🎉 Your diploma was generated!")
+        # # st.write(html, unsafe_allow_html=True)
+        # # st.write("")
+        # with open("MyPDF.pdf", "rb") as pdf_file:
+        #     PDFbyte = pdf_file.read()
         
-        st.download_button(
-            label="⬇️ Download PDF",
-            data=PDFbyte,
-            file_name="MyPDF.pdf",
-            mime="application/octet-stream",
-        )
+        # st.download_button(
+        #     label="⬇️ Download PDF",
+        #     data=PDFbyte,
+        #     file_name="MyPDF.pdf",
+        #     mime="application/octet-stream",
+        # )
 
 
 
