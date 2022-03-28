@@ -68,7 +68,7 @@ if authentication_status:
     submit = form.form_submit_button("Generate PDF")
     st.write(student)
     if submit:
-        html = template.render(
+        htmlcer = template.render(
             student=student,
             course=course,
             grade=f"{grade}/100",
@@ -76,7 +76,7 @@ if authentication_status:
             test=test
 
         )
-        st.write(html)
+        st.write(htmlcer)
         
 
 
@@ -95,7 +95,7 @@ if authentication_status:
         pdf = FPDF()
         pdf.add_page()
         pdf.set_font('Arial', 'B', 16)
-        pdf.cell(40, 10, html)
+        pdf.cell(40, 10, htmlcer)
         
         html = create_download_link(pdf.output(dest="S").encode("latin-1"), "test")
 
