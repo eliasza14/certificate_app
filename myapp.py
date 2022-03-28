@@ -81,6 +81,7 @@ if authentication_status:
             test=test
 
         )
+
         st.write(html)
         
 
@@ -90,21 +91,23 @@ if authentication_status:
         # pdf = pdfkit.from_string(html, False)
         st.balloons()
 
-    export_as_pdf = st.button("Export Report")
+        export_as_pdf = st.button("Export Report")
 
 
-    st.write(html)
+        st.write(html)
 
 
-    if export_as_pdf:
-        pdf = FPDF()
-        pdf.add_page()
-        pdf.set_font('Arial', 'B', 16)
-        pdf.cell(40, 10, html)
-        
-        html = create_download_link(pdf.output(dest="S").encode("latin-1"), "test")
+        if export_as_pdf:
+            st.write("mpikes stin export as pdf")
+            pdf = FPDF()
+            pdf.add_page()
+            pdf.set_font('Arial', 'B', 16)
+            st.write(html)
+            pdf.cell(40, 10, html)
+            
+            html = create_download_link(pdf.output(dest="S").encode("latin-1"), "test")
 
-        st.markdown(html, unsafe_allow_html=True)
+            st.markdown(html, unsafe_allow_html=True)
 
 
 
