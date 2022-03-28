@@ -16,10 +16,6 @@ def get_options():
         'enable-local-file-access': True
     }
 
-def create_download_link(val, filename):
-    b64 = base64.b64encode(val)  # val looks like b'...'
-    return f'<a href="data:application/octet-stream;base64,{b64.decode()}" download="{filename}.pdf">Download file</a>'
-
 
 names = ['MARIA	TERZI','Στεριανή Αβράμη','ΔΕΣΠΟΙΝΑ ΑΒΡΑΜΙΔΟΥ','Μαρία Αγάθου']
 usernames = ['Maria-terzi@hotmail.com','stella-a88@hotmail.com','depi1970@hotmail.com','magathou@hotmail.com']
@@ -71,7 +67,6 @@ if authentication_status:
     # grade = form.slider("Grade", 1, 100, 60)
     submit = form.form_submit_button("Generate PDF")
     st.write(student)
-    
     if submit:
         html = template.render(
             student=student,
@@ -81,7 +76,6 @@ if authentication_status:
             test=test
 
         )
-
         st.write(html)
         
 
@@ -91,23 +85,21 @@ if authentication_status:
         # pdf = pdfkit.from_string(html, False)
         st.balloons()
 
-export_as_pdf = st.button("Export Report")
+        export_as_pdf = st.button("Export Report")
 
+        def create_download_link(val, filename):
+            b64 = base64.b64encode(val)  # val looks like b'...'
+            return f'<a href="data:application/octet-stream;base64,{b64.decode()}" download="{filename}.pdf">Download file</a>'
 
-st.write(html)
+        if export_as_pdf:
+            pdf = FPDF()
+            pdf.add_page()
+            pdf.set_font('Arial', 'B', 16)
+            pdf.cell(40, 10, "testy")
+            
+            html = create_download_link(pdf.output(dest="S").encode("latin-1"), "test")
 
-
-if export_as_pdf:
-    st.write("mpikes stin export as pdf")
-    pdf = FPDF()
-    pdf.add_page()
-    pdf.set_font('Arial', 'B', 16)
-    st.write(html)
-    pdf.cell(40, 10, "Testtttttttt")
-    
-    html = create_download_link(pdf.output(dest="S").encode("latin-1"), "test")
-
-    st.markdown(html, unsafe_allow_html=True)
+            st.markdown(html, unsafe_allow_html=True)
 
 
 
